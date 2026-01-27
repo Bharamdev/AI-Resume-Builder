@@ -50,10 +50,8 @@ function HomePage() {
 
   const hadnleGetStartedClick = () => {
     if (user) {
-      console.log("Printing from Homepage User is There ");
       navigate("/dashboard");
     } else {
-      console.log("Printing for Homepage User Not Found");
       navigate("/auth/sign-in");
     }
   };
@@ -262,7 +260,7 @@ function HomePage() {
         </div>
       </footer>
 
-      <style jsx>{`
+      <style>{`
         @keyframes gradient {
           0%, 100% {
             background-position: 0% 50%;

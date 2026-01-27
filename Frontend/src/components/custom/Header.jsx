@@ -11,12 +11,7 @@ function Header({user}) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if(user){
-      console.log("Printing From Header User Found");
-    }
-    else{
-      console.log("Printing From Header User Not Found");
-    }
+    // User is already available from Redux, no need for debug logging
   }, []);
 
   const handleLogout = async () => {
