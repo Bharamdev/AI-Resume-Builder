@@ -39,8 +39,9 @@ function ResumeForm() {
       <div className="flex justify-between">
         <div className="flex gap-2 items-center">
           <Link to="/dashboard">
-            <Button>
-              <HomeIcon />
+            <Button className="flex gap-2">
+              <HomeIcon size={18} />
+              Dashboard
             </Button>
           </Link>
           <ThemeColor resumeInfo={resumeInfo}/> 
