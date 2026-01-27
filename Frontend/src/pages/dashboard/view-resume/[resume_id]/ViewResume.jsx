@@ -109,10 +109,6 @@ function ViewResume() {
             </div>
           </div>
         </div>
-              </RWebShare>
-            </div>
-          </div>
-        </div>
         <div
           className=" bg-white rounded-lg p-8 print-area"
           style={{ width: "210mm", height: "297mm" }}
