@@ -32,10 +32,9 @@ console.log("CORS Configuration:", {
 });
 
 const corsOptions = {
-  origin: true, // allows all origins
+  origin: "https://ai-resume-builder-flame-five.vercel.app",
   credentials: true,
 };
-
 
 app.use(cors(corsOptions));
 
