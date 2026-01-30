@@ -4,6 +4,12 @@ import { ApiResponse } from "../utils/ApiResponse.js";
 import { ApiError } from "../utils/ApiError.js";
 
 const isUserAvailable = async (req, res, next) => {
+  // Check if JWT_SECRET_KEY is available
+  if (!process.env.JWT_SECRET_KEY) {
+    console.error("❌ JWT_SECRET_KEY is not defined");
+    return res.status(500).json(new ApiError(500, "Server configuration error: JWT_SECRET_KEY is missing"));
+  }
+
   let { token } = req.cookies;
 
   if (!token) {
@@ -11,7 +17,7 @@ const isUserAvailable = async (req, res, next) => {
   }
 
   try {
-    const decodedToken = await jwt.verify(token, process.env.JWT_SECRET_KEY);
+    const decodedToken = jwt.verify(token, process.env.JWT_SECRET_KEY);
     const user = await User.findById(decodedToken.id);
 
     if (!user) {

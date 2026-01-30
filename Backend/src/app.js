@@ -17,9 +17,12 @@ app.use(cookieParser());
 const allowedOrigins =
   process.env.NODE_ENV === "Dev" || process.env.NODE_ENV === "development"
     ? true
-    : process.env.ALLOWED_SITE
-    ? process.env.ALLOWED_SITE.split(",")
+    : process.env.ALLOWED_SITE?.trim()
+    ? process.env.ALLOWED_SITE.split(",").map(url => url.trim())
     : [];
+
+console.log("NODE_ENV:", process.env.NODE_ENV);
+console.log("Allowed Origins:", allowedOrigins);
 
 const corsOptions = {
   origin: allowedOrigins,
