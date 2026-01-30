@@ -14,15 +14,22 @@ app.use(cookieParser());
 // Configure CORS
 // In development we allow all origins (so Vite dev server can talk to the API)
 // In other environments we respect the ALLOWED_SITE env (comma separated list)
-const allowedOrigins =
-  process.env.NODE_ENV === "Dev" || process.env.NODE_ENV === "development"
-    ? true
-    : process.env.ALLOWED_SITE?.trim()
-    ? process.env.ALLOWED_SITE.split(",").map(url => url.trim())
-    : [];
+let allowedOrigins;
 
-console.log("NODE_ENV:", process.env.NODE_ENV);
-console.log("Allowed Origins:", allowedOrigins);
+if (process.env.NODE_ENV === "Dev" || process.env.NODE_ENV === "development") {
+  allowedOrigins = true; // Allow all origins in development
+} else if (process.env.ALLOWED_SITE && process.env.ALLOWED_SITE.trim()) {
+  allowedOrigins = process.env.ALLOWED_SITE.split(",").map(url => url.trim());
+} else {
+  // Fallback: allow all in production if ALLOWED_SITE not set (temporary for testing)
+  allowedOrigins = true;
+  console.warn("⚠️  ALLOWED_SITE not set. Allowing all origins (not recommended for production)");
+}
+
+console.log("CORS Configuration:", {
+  NODE_ENV: process.env.NODE_ENV,
+  allowedOrigins: Array.isArray(allowedOrigins) ? allowedOrigins : "all"
+});
 
 const corsOptions = {
   origin: allowedOrigins,
