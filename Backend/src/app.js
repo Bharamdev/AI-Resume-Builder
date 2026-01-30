@@ -32,7 +32,7 @@ console.log("CORS Configuration:", {
 });
 
 const corsOptions = {
-  origin: "https://ai-resume-builder-spyx.vercel.app",
+  origin: "*",
   credentials: true,
 };
 
