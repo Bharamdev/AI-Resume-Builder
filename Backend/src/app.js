@@ -32,9 +32,10 @@ console.log("CORS Configuration:", {
 });
 
 const corsOptions = {
-  origin: allowedOrigins,
+  origin: true, // allows all origins
   credentials: true,
 };
+
 
 app.use(cors(corsOptions));
 
